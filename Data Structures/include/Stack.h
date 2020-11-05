@@ -12,7 +12,7 @@ private:
 
 public:
     // constructor & destructor
-    Stack(int);
+    Stack(int size = 0);
     ~Stack();
 
     // basics
