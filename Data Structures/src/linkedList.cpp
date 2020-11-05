@@ -98,4 +98,15 @@ void linkedList::deletePosition(int position) {
     prev->next = curr->next;
 }
 
-linkedList::~linkedList() = default;
+linkedList::~linkedList() {
+    node *curr = new node;
+    node *next;
+
+    curr = head;
+    while(curr != nullptr) {
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    head = nullptr;
+}
