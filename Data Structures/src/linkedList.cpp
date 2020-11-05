@@ -5,6 +5,19 @@ linkedList::linkedList() {
     tail = nullptr;
 }
 
+linkedList::~linkedList() {
+    node *curr;
+    node *next;
+
+    curr = head;
+    while(curr != nullptr) {
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    head = nullptr;
+}
+
 void linkedList::createNode(int value) {
     node *temp = new node;
     temp->data = value;
@@ -22,8 +35,7 @@ void linkedList::createNode(int value) {
 }
 
 void linkedList::display() {
-    node *temp = new node;
-    temp = head;
+    node *temp = head;
 
     while(temp != nullptr) {
         std::cout << temp->data << " ";
@@ -45,12 +57,10 @@ void linkedList::insertEnd(int value) {
 
 void linkedList::insertPosition(int position, int value) {
     node *pre = new node;
-    node *curr = new node;
+    node *curr = head;
     node *temp = new node;
 
-    curr = head;
-
-    for(int i = 1 ; i < position ; i++)
+    for(int i = 0 ; i < position ; i++)
     {
         pre = curr;
         curr = curr->next;
@@ -62,16 +72,14 @@ void linkedList::insertPosition(int position, int value) {
 }
 
 void linkedList::deleteStart() {
-    node *temp = new node;
-    temp = head;
+    node *temp = head;
     head = head->next;
     delete temp;
 }
 
 void linkedList::deleteEnd() {
-    node *curr = new node;
+    node *curr = head;
     node *prev = new node;
-    curr = head;
 
     while(curr->next != nullptr) {
         prev = curr;
@@ -85,11 +93,10 @@ void linkedList::deleteEnd() {
 }
 
 void linkedList::deletePosition(int position) {
-    node *curr = new node;
+    node *curr = head;
     node *prev = new node;
-    curr = head;
 
-    for(int i = 1 ;i < position ; i++)
+    for(int i = 0 ;i < position ; i++)
     {
         prev = curr;
         curr = curr->next;
@@ -98,15 +105,34 @@ void linkedList::deletePosition(int position) {
     prev->next = curr->next;
 }
 
-linkedList::~linkedList() {
-    node *curr = new node;
-    node *next;
+int linkedList::getLength() {
+    int len = 0;
 
-    curr = head;
+    node *curr = head;
     while(curr != nullptr) {
-        next = curr->next;
-        delete curr;
-        curr = next;
+        len++;
+        curr = curr->next;
     }
-    head = nullptr;
+
+    return len;
+}
+
+bool linkedList::search(int value) {
+    node *curr = head;
+
+    while(curr != nullptr) {
+        if (curr->data == value) return true;
+        curr = curr->next;
+    }
+
+    return false;
+}
+
+int linkedList::getNth(int position) {
+    node *curr = head;
+
+    for(int i = 0 ; i < position ; i++)
+        curr = curr->next;
+
+    return curr->data;
 }

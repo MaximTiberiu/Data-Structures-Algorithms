@@ -32,10 +32,21 @@ public:
     void insertPosition(int, int);
 
 
-    //deletions
+    // deletions
     void deleteStart();
     void deleteEnd();
     void deletePosition(int);
+
+    // length
+    int getLength();
+
+    // search element
+    bool search(int);
+
+    // get Nth node
+    int getNth(int);
+
+    
 };
 
 
