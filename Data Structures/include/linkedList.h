@@ -46,7 +46,7 @@ public:
     // get Nth node
     int getNth(int);
 
-    
+
 };
 
 
